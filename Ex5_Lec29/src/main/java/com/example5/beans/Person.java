@@ -13,7 +13,7 @@ public class Person {
     private Vehicle vehicle;
 
     @Autowired
-    public Person(@Qualifier("bmwVehicleBean") Vehicle vehicle){
+    public Person(Vehicle vehicle){
         this.vehicle = vehicle;
     }
 

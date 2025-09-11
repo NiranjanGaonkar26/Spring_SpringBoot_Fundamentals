@@ -11,25 +11,25 @@ import org.springframework.context.annotation.Primary;
 @ComponentScan(basePackages = "com.example5.beans")
 public class ProjectConfig {
 
-    @Bean(name = "audiVehicleBean")
-    Vehicle vehicle1(){
-        Vehicle veh1 = new Vehicle();
-        veh1.setName("Audi");
-        return veh1;
-    }
-
-    @Bean(value = "bmwVehicleBean")
-    Vehicle vehicle2(){
-        Vehicle veh2 = new Vehicle();
-        veh2.setName("BMW");
-        return veh2;
-    }
-
-    @Bean("mercedesVehicleBean")
-//    @Primary
-    Vehicle vehicle3(){
-        Vehicle veh3 = new Vehicle();
-        veh3.setName("Mercedes");
-        return veh3;
-    }
+//    @Bean(name = "audiVehicleBean")
+//    Vehicle vehicle1(){
+//        Vehicle veh1 = new Vehicle();
+//        veh1.setName("Audi");
+//        return veh1;
+//    }
+//
+//    @Bean(value = "bmwVehicleBean")
+//    Vehicle vehicle2(){
+//        Vehicle veh2 = new Vehicle();
+//        veh2.setName("BMW");
+//        return veh2;
+//    }
+//
+//    @Bean("mercedesVehicleBean")
+////    @Primary
+//    Vehicle vehicle3(){
+//        Vehicle veh3 = new Vehicle();
+//        veh3.setName("Mercedes");
+//        return veh3;
+//    }
 }
