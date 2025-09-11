@@ -11,13 +11,14 @@ public class Person {
 //    @Autowired(required = false)
     private Vehicle vehicle;
 
+    @Autowired
+    public Person(Vehicle vehicle){
+        this.vehicle = vehicle;
+    }
+
     @PostConstruct
     public void init(){
         this.setName("Niranjan");
-    }
-
-    public Person() {
-        System.out.println("Person Bean Created...");
     }
 
     public String getName() {
@@ -32,7 +33,7 @@ public class Person {
         return vehicle;
     }
 
-    @Autowired
+//    @Autowired
     public void setVehicle(Vehicle vehicle) {
         this.vehicle = vehicle;
     }
