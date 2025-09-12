@@ -6,7 +6,7 @@ import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
 @Component
-@Scope(BeanDefinition.SCOPE_SINGLETON)
+@Scope(BeanDefinition.SCOPE_PROTOTYPE)
 public class VehicleServices {
 
     private Speaker speaker;
@@ -14,6 +14,7 @@ public class VehicleServices {
 
     @Autowired
     public VehicleServices(Speaker speaker, Tyre tyre){
+        System.out.println("VehicleServices bean created by Spring");
         this.speaker = speaker;
         this.tyre = tyre;
     }
