@@ -20,16 +20,17 @@ public class VehicleServices {
     private Speakers speakers;
     private Tyres tyres;
 
+
     public String playMusic(boolean vehicleStarted, Song song){
         Instant start = Instant.now();
         logger.info("method execution start");
         String music = null;
-        if(vehicleStarted){
-            music = speakers.makeSound(song);
-        }else{
-            logger.log(Level.SEVERE,"Vehicle not started to perform the" +
-                    " operation");
-        }
+//        if(vehicleStarted){
+//            music = speakers.makeSound(song);
+//        }else{
+//            logger.log(Level.SEVERE,"Vehicle not started to perform the" +
+//                    " operation");
+//        }
         logger.info("method execution end");
         Instant finish = Instant.now();
         long timeElapsed = Duration.between(start, finish).toMillis();
@@ -41,12 +42,12 @@ public class VehicleServices {
         Instant start = Instant.now();
         logger.info("method execution start");
         String status = null;
-        if(vehicleStarted){
-            status = tyres.rotate();
-        }else{
-            logger.log(Level.SEVERE,"Vehicle not started to perform the" +
-                    " operation");
-        }
+//        if(vehicleStarted){
+//            status = tyres.rotate();
+//        }else{
+//            logger.log(Level.SEVERE,"Vehicle not started to perform the" +
+//                    " operation");
+//        }
         logger.info("method execution end");
         Instant finish = Instant.now();
         long timeElapsed = Duration.between(start, finish).toMillis();
@@ -58,12 +59,12 @@ public class VehicleServices {
         Instant start = Instant.now();
         logger.info("method execution start");
         String status = null;
-        if(vehicleStarted){
-            status = tyres.stop();
-        }else{
-            logger.log(Level.SEVERE,"Vehicle not started to perform the" +
-                    " operation");
-        }
+//        if(vehicleStarted){
+//            status = tyres.stop();
+//        }else{
+//            logger.log(Level.SEVERE,"Vehicle not started to perform the" +
+//                    " operation");
+//        }
         logger.info("method execution end");
         Instant finish = Instant.now();
         long timeElapsed = Duration.between(start, finish).toMillis();
