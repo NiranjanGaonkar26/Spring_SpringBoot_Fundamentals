@@ -35,6 +35,7 @@ public class VehicleServices {
 //        Instant finish = Instant.now();
 //        long timeElapsed = Duration.between(start, finish).toMillis();
 //        logger.info("Time took to execute the method : "+timeElapsed);
+//        throw new RuntimeException("Unable to play a song, Look into this");
         return speakers.makeSound(song);
     }
 

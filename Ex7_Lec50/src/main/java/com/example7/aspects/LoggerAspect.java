@@ -1,6 +1,9 @@
 package com.example7.aspects;
 
+import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.ProceedingJoinPoint;
+import org.aspectj.lang.annotation.AfterReturning;
+import org.aspectj.lang.annotation.AfterThrowing;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
 import org.springframework.core.annotation.Order;
@@ -26,5 +29,15 @@ public class LoggerAspect {
         Instant finish = Instant.now();
         long timeElapsed = Duration.between(start, finish).toMillis();
         logger.info("Time took to execute the method : "+timeElapsed+" ms");
+    }
+
+    @AfterThrowing(value = "execution(* com.example7.services.*.*(..))", throwing = "ex")
+    public void logException(JoinPoint joinPoint, Exception ex){
+        logger.severe(ex.getMessage()+" thrown by: "+joinPoint.getSignature().toString());
+    }
+
+    @AfterReturning(value = "execution(* com.example7.services.*.*(..))", returning = "retVal")
+    public void logStatus(JoinPoint joinPoint, Object retVal){
+        logger.info(retVal.toString() + " returned by: " + joinPoint.getSignature().toString());
     }
 }
