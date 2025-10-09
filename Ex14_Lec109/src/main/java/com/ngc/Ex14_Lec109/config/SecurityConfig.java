@@ -17,5 +17,13 @@ public class SecurityConfig {
         http.httpBasic(Customizer.withDefaults());
         return (SecurityFilterChain)http.build();
     }
+
+//    @Bean
+//    SecurityFilterChain defaultSecurityFilterChain(HttpSecurity http) throws Exception {
+//        http.authorizeHttpRequests((requests) -> ((AuthorizeHttpRequestsConfigurer.AuthorizedUrl)requests.anyRequest()).denyAll());
+//        http.formLogin(Customizer.withDefaults());
+//        http.httpBasic(Customizer.withDefaults());
+//        return (SecurityFilterChain)http.build();
+//    }
 }
 
