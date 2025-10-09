@@ -12,18 +12,16 @@ import org.springframework.security.web.SecurityFilterChain;
 public class SecurityConfig {
     @Bean
     SecurityFilterChain defaultSecurityFilterChain(HttpSecurity http) throws Exception {
-        http.authorizeHttpRequests((requests) -> ((AuthorizeHttpRequestsConfigurer.AuthorizedUrl)requests.anyRequest()).permitAll());
-        http.formLogin(Customizer.withDefaults());
-        http.httpBasic(Customizer.withDefaults());
+        http.authorizeHttpRequests((requests) -> requests.requestMatchers("/", "/home").permitAll()
+                        .requestMatchers("/holidays/**").denyAll()
+                        .requestMatchers("/contact").authenticated()
+                        .requestMatchers("/saveMsg").permitAll()
+                        .requestMatchers("/courses").permitAll()
+                        .requestMatchers("/about").permitAll()
+                        .requestMatchers("/assets/**").permitAll())
+                .formLogin(Customizer.withDefaults())
+                .httpBasic(Customizer.withDefaults());
         return (SecurityFilterChain)http.build();
     }
-
-//    @Bean
-//    SecurityFilterChain defaultSecurityFilterChain(HttpSecurity http) throws Exception {
-//        http.authorizeHttpRequests((requests) -> ((AuthorizeHttpRequestsConfigurer.AuthorizedUrl)requests.anyRequest()).denyAll());
-//        http.formLogin(Customizer.withDefaults());
-//        http.httpBasic(Customizer.withDefaults());
-//        return (SecurityFilterChain)http.build();
-//    }
 }
 
