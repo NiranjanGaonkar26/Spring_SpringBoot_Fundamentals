@@ -12,7 +12,8 @@ import org.springframework.security.web.SecurityFilterChain;
 public class SecurityConfig {
     @Bean
     SecurityFilterChain defaultSecurityFilterChain(HttpSecurity http) throws Exception {
-        http.authorizeHttpRequests((requests) -> requests.requestMatchers("/", "/home").permitAll()
+        http.csrf((csrf) -> csrf.disable())
+                .authorizeHttpRequests((requests) -> requests.requestMatchers("/", "/home").permitAll()
                         .requestMatchers("/holidays/**").denyAll()
                         .requestMatchers("/contact").authenticated()
                         .requestMatchers("/saveMsg").permitAll()
