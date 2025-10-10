@@ -6,6 +6,9 @@ import org.springframework.core.annotation.Order;
 import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configurers.AuthorizeHttpRequestsConfigurer;
+import org.springframework.security.core.userdetails.User;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
 
 @Configuration
@@ -23,6 +26,13 @@ public class SecurityConfig {
                 .formLogin(Customizer.withDefaults())
                 .httpBasic(Customizer.withDefaults());
         return (SecurityFilterChain)http.build();
+    }
+
+    @Bean
+    public InMemoryUserDetailsManager userDetailsManager(){
+        UserDetails admin = User.withDefaultPasswordEncoder().username("admin").password("12345").roles("USER", "ADMIN").build();
+        UserDetails user = User.withDefaultPasswordEncoder().username("user").password("54321").roles("USER").build();
+        return new InMemoryUserDetailsManager(admin, user);
     }
 }
 
