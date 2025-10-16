@@ -1,34 +1,37 @@
 package com.ngc.Ex17_Lec128.Service;
 
+import com.ngc.Ex17_Lec128.Constants.ApplicationConstants;
 import com.ngc.Ex17_Lec128.Model.Contact;
+import com.ngc.Ex17_Lec128.Repository.ContactRepository;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.context.annotation.ApplicationScope;
+
+import java.time.LocalDateTime;
 
 @Slf4j
 @Service
-//@RequestScope
-//@SessionScope
-@ApplicationScope
 public class ContactService {
 
-    private int counter = 0;
+    private ContactRepository contactRepository;
 
-    public ContactService(){
+    @Autowired
+    public ContactService(ContactRepository contactRepository){
         System.out.println("Contact Service bean instantiated");
+        this.contactRepository = contactRepository;
     }
 
     public boolean saveMessageDetails(Contact contact){
-        boolean isSaved = true;
-        log.info(contact.toString());
+        boolean isSaved = false;
+        contact.setStatus(ApplicationConstants.OPEN);
+        contact.setCreatedBy(ApplicationConstants.ANONYMOUS);
+        contact.setCreatedAt(LocalDateTime.now());
+
+        int result = contactRepository.saveMessageToDB(contact);
+        if(result > 0){
+            log.info("Contact successfully saved to the DB");
+            isSaved = true;
+        }
         return isSaved;
-    }
-
-    public int getCounter() {
-        return counter;
-    }
-
-    public void setCounter(int counter) {
-        this.counter = counter;
     }
 }
