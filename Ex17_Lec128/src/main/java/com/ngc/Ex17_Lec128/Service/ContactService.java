@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Slf4j
 @Service
@@ -33,5 +34,10 @@ public class ContactService {
             isSaved = true;
         }
         return isSaved;
+    }
+
+    public List<Contact> getMsgsWithOpenStatus(){
+        List<Contact> contactMsgs = contactRepository.fetchMsgsWithStatus(ApplicationConstants.OPEN);
+        return contactMsgs;
     }
 }
