@@ -40,4 +40,14 @@ public class ContactService {
         List<Contact> contactMsgs = contactRepository.fetchMsgsWithStatus(ApplicationConstants.OPEN);
         return contactMsgs;
     }
+
+    public boolean closeOpenMessage(int msgid, String updatedBy) {
+        boolean isUpdated = false;
+        int result = contactRepository.closeOpenMessageStatus(msgid, updatedBy);
+        if(result > 0){
+            log.info("Contact message status successfully updated to Closed in the DB");
+            isUpdated = true;
+        }
+        return isUpdated;
+    }
 }
