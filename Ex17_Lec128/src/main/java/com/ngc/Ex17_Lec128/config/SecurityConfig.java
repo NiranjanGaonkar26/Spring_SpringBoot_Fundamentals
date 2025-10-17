@@ -27,7 +27,8 @@ public class SecurityConfig {
                         .requestMatchers("/assets/**").permitAll()
                         .requestMatchers("/login").permitAll()
                         .requestMatchers("/logout").permitAll()
-                        .requestMatchers(PathRequest.toH2Console()).permitAll())
+                        .requestMatchers(PathRequest.toH2Console()).permitAll()
+                        .requestMatchers("/displayMessages").authenticated())
                 .formLogin(loginConfigurer -> loginConfigurer.loginPage("/login").defaultSuccessUrl("/dashboard").failureUrl("/login?error=true").permitAll())
                 .logout(logoutConfigurer -> logoutConfigurer.logoutSuccessUrl("/login?logout=true").invalidateHttpSession(true).permitAll())
                 .httpBasic(Customizer.withDefaults());
@@ -39,7 +40,7 @@ public class SecurityConfig {
 
     @Bean
     public InMemoryUserDetailsManager userDetailsManager(){
-        UserDetails admin = User.withDefaultPasswordEncoder().username("admin").password("12345").roles("USER", "ADMIN").build();
+        UserDetails admin = User.withDefaultPasswordEncoder().username("admin").password("12345").roles("ADMIN").build();
         UserDetails user = User.withDefaultPasswordEncoder().username("user").password("54321").roles("USER").build();
         return new InMemoryUserDetailsManager(admin, user);
     }
