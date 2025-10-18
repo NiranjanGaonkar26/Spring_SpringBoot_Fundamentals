@@ -26,13 +26,13 @@ public class ContactRepository {
     }
 
     public int saveMessageToDB(Contact contact){
-        String insertSql = "INSERT INTO CONTACT_MSG (NAME,MOBILE_NUM,EMAIL,SUBJECT,MESSAGE,STATUS,CREATED_AT,CREATED_BY) VALUES (?,?,?,?,?,?,?,?)";
+        String insertSql = "INSERT INTO contact_msg (name,mobile_num,email,subject,message,status,created_at,created_by) VALUES (?,?,?,?,?,?,?,?)";
         return jdbcTemplate.update(insertSql, contact.getName(), contact.getMobileNum(), contact.getEmail(), contact.getSubject(), contact.getMessage(), contact.getStatus(), contact.getCreatedAt(), contact.getCreatedBy());
     }
 
     public List<Contact> fetchMsgsWithStatus(String status) {
 
-        String sql = "SELECT * FROM CONTACT_MSG WHERE status = ?";
+        String sql = "SELECT * FROM contact_msg WHERE status = ?";
         return jdbcTemplate.query(sql, new PreparedStatementSetter() {
             @Override
             public void setValues(PreparedStatement ps) throws SQLException {
@@ -42,7 +42,7 @@ public class ContactRepository {
     }
 
     public int closeOpenMessageStatus(int msgid, String updatedBy) {
-        String updateSql = "UPDATE CONTACT_MSG SET STATUS = ?, UPDATED_BY = ?, UPDATED_AT = ? WHERE CONTACT_ID = ?";
+        String updateSql = "UPDATE contact_msg SET status = ?, updated_by = ?, updated_at = ? WHERE contact_id = ?";
         return jdbcTemplate.update(updateSql, new PreparedStatementSetter() {
             @Override
             public void setValues(PreparedStatement ps) throws SQLException {
